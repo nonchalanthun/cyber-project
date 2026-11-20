@@ -20,7 +20,7 @@ def _load_wordlist() -> list:
         for line in f:
             parts = line.strip().split()
             if parts:
-                words.append(parts[-1])  # Supports both "11111\tword" and "word"
+                words.append(parts[-1]) 
     return words or FALLBACK_WORDS
 
 
@@ -59,7 +59,6 @@ def generate_random_password(
     remaining_length = length - len(required_chars)
     password_chars = required_chars + [secrets.choice(all_chars) for _ in range(remaining_length)]
 
-    # Cryptographically secure shuffle
     secrets.SystemRandom().shuffle(password_chars)
     return "".join(password_chars)
 
