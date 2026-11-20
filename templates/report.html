@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card" id="reportContainer">
+  <div class="report-header">
+    <h2>Security Analysis Report</h2>
+    <button type="button" id="downloadPdfBtn" class="btn btn-primary">Download Redacted PDF</button>
+  </div>
+  <p id="noReportMsg">No analysis data found in this session. Please run a <a href="{{ url_for('analyzer_page') }}">Deep Analysis</a> first.</p>
+
+  <div id="reportContent" class="hidden">
+    <div class="grid-3">
+      <div class="stat-box"><span>Strength</span><strong id="repCategory">-</strong></div>
+      <div class="stat-box"><span>Entropy</span><strong id="repEntropy">-</strong></div>
+      <div class="stat-box"><span>Breach Status</span><strong id="repBreach">-</strong></div>
+    </div>
+
+    <h3>Hash Cracking Speed Simulator (Educational)</h3>
+    <table class="data-table">
+      <thead><tr><th>Hashing Algorithm</th><th>Estimated Avg. Brute-Force Time</th></tr></thead>
+      <tbody id="crackingTableBody"></tbody>
+    </table>
+
+    <h3>Detected Weaknesses & Patterns</h3>
+    <ul id="repPatterns"></ul>
+
+    <h3>Smart Recommendations</h3>
+    <ul id="repSuggestions"></ul>
+
+    <p class="disclaimer" id="repDisclaimer"></p>
+  </div>
+</div>
+{% endblock %}

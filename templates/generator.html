@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Secure Password & Passphrase Generator</h2>
+  <div class="mode-toggle">
+    <button type="button" id="modeRandom" class="btn btn-primary">Random Password</button>
+    <button type="button" id="modePassphrase" class="btn btn-secondary">Diceware Passphrase</button>
+  </div>
+
+  <div id="randomOptions" class="options-box">
+    <label>Length: <span id="lenValue">16</span></label>
+    <input type="range" id="genLength" min="8" max="64" value="16" />
+    <div class="checkbox-row">
+      <label><input type="checkbox" id="optUpper" checked /> Uppercase</label>
+      <label><input type="checkbox" id="optLower" checked /> Lowercase</label>
+      <label><input type="checkbox" id="optDigits" checked /> Digits</label>
+      <label><input type="checkbox" id="optSymbols" checked /> Symbols</label>
+    </div>
+  </div>
+
+  <div id="passphraseOptions" class="options-box hidden">
+    <label>Word Count: <span id="wordValue">5</span></label>
+    <input type="range" id="genWords" min="3" max="8" value="5" />
+    <label><input type="checkbox" id="optCap" checked /> Capitalize Words</label>
+  </div>
+
+  <div class="input-group">
+    <input type="text" id="generatedOutput" readonly placeholder="Click Generate..." />
+    <button type="button" id="copyBtn" class="btn btn-secondary">Copy</button>
+  </div>
+  <button type="button" id="generateBtn" class="btn btn-primary">Generate</button>
+</div>
+{% endblock %}

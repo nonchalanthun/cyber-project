@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Smart Password Strength Analyzer{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <!-- Client-side zxcvbn & jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">ShieldPass</div>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('analyzer_page') }}">Analyzer</a></li>
+      <li><a href="{{ url_for('generator_page') }}">Generator</a></li>
+      <li><a href="{{ url_for('report_page') }}">Report</a></li>
+      <li><a href="{{ url_for('about_page') }}">About & NIST</a></li>
+    </ul>
+  </nav>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="footer">
+    <p>Zero-Storage Privacy Guarantee: Passwords are never saved or logged. Breach checks use SHA-1 k-Anonymity.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>NIST SP 800-63B Guidelines & Password Awareness</h2>
+  <ul>
+    <li><strong>Length Over Complexity:</strong> A 16-character passphrase like <code>Correct-Horse-Battery-Staple</code> is far harder to crack and easier to remember than <code>P@ssw0rd!</code>.</li>
+    <li><strong>Block Compromised Passwords:</strong> Always check passwords against known breach corpuses (like HIBP) rather than forcing arbitrary 90-day password rotations.</li>
+    <li><strong>Use Multi-Factor Authentication (MFA):</strong> Even a strong password can be phished. Always enable TOTP authenticator apps or FIDO2 security keys.</li>
+    <li><strong>Use a Password Manager:</strong> Never reuse passwords across websites. Let a reputable manager generate and store unique credentials.</li>
+  </ul>
+</div>
+{% endblock %}

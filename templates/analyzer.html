@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Password Strength Analyzer</h2>
+  <p class="subtitle">Live feedback runs locally in your browser. Click "Deep Analysis & Breach Check" for full report & HIBP k-anonymity check.</p>
+
+  <div class="input-group">
+    <input type="password" id="passwordInput" placeholder="Enter a password to test..." autocomplete="off" />
+    <button type="button" id="toggleVisibility" class="btn btn-secondary">Show</button>
+  </div>
+
+  <div class="meter-wrapper">
+    <div id="strengthBar" class="strength-bar"></div>
+  </div>
+  <p id="liveStatus" class="status-text">Strength: Waiting for input...</p>
+
+  <ul class="checklist" id="liveChecklist">
+    <li id="chk-len12">At least 12 characters (NIST recommended)</li>
+    <li id="chk-upper">Uppercase letter (A–Z)</li>
+    <li id="chk-lower">Lowercase letter (a–z)</li>
+    <li id="chk-digit">Number (0–9)</li>
+    <li id="chk-symbol">Special symbol (!@#$...)</li>
+  </ul>
+
+  <button type="button" id="deepAnalyzeBtn" class="btn btn-primary">Deep Analysis & Breach Check</button>
+  <p id="breachBanner" class="breach-banner hidden"></p>
+</div>
+{% endblock %}

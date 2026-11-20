@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Smart Password Strength Analyzer</h1>
+  <p>Evaluate password resilience against modern GPU cracking rigs, check real-world breaches via k-Anonymity, and generate cryptographically secure passphrases aligned with NIST SP 800-63B.</p>
+  <div class="cta-group">
+    <a href="{{ url_for('analyzer_page') }}" class="btn btn-primary">Start Analyzing</a>
+    <a href="{{ url_for('generator_page') }}" class="btn btn-secondary">Generate Secure Password</a>
+  </div>
+</section>
+<section class="grid-3">
+  <div class="card">
+    <h3>Zero-Storage Privacy</h3>
+    <p>All live checks run in your browser. Deep analysis runs strictly in memory and is discarded immediately.</p>
+  </div>
+  <div class="card">
+    <h3>k-Anonymity Breach Check</h3>
+    <p>Only the first 5 characters of your password's SHA-1 hash are sent to Have I Been Pwned.</p>
+  </div>
+  <div class="card">
+    <h3>Hash Cracking Simulator</h3>
+    <p>See why length and modern hashing (Argon2id/bcrypt) matter compared to broken hashes like MD5.</p>
+  </div>
+</section>
+{% endblock %}
