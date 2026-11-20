@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- 1. ANALYZER PAGE ---
+
   const pwInput = document.getElementById("passwordInput");
   if (pwInput) {
     const toggleBtn = document.getElementById("toggleVisibility");
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify({ password: val, check_breach: true }),
         });
         const data = await resp.json();
-        // Store ONLY the redacted report in sessionStorage (never the password)
+
         sessionStorage.setItem("lastReport", JSON.stringify(data));
         window.location.href = "/report";
       } catch (err) {
@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 2. GENERATOR PAGE ---
   const genBtn = document.getElementById("generateBtn");
   if (genBtn) {
     let mode = "random";
@@ -119,7 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 3. REPORT PAGE & REDACTED PDF EXPORT ---
   const reportContent = document.getElementById("reportContent");
   if (reportContent) {
     const raw = sessionStorage.getItem("lastReport");
