@@ -47,7 +47,6 @@ def analyze_password(password: str, check_breach: bool = False) -> dict:
     if not password:
         return {"error": "Password cannot be empty."}
 
-    # 1. Requirement checks
     checks = {
         "min_length_8": len(password) >= 8,
         "min_length_12": len(password) >= 12,
@@ -57,23 +56,18 @@ def analyze_password(password: str, check_breach: bool = False) -> dict:
         "has_symbol": bool(re.search(r"[^A-Za-z0-9\s]", password)),
     }
 
-    # 2. Pattern & common list detection
     patterns = detect_patterns(password)
 
-    # 3. zxcvbn evaluation (truncate to 72 chars as zxcvbn recommends for performance)
     zx_result = zxcvbn(password[:72])
-    zx_score = zx_result["score"]  # 0 to 4
+    zx_score = zx_result["score"]
 
-    # 4. Entropy & Cracking Simulator
     entropy_bits = calculate_entropy(password)
     cracking_times = simulate_hash_cracking(entropy_bits)
 
-    # 5. Breach check (k-Anonymity)
     breach_info = {"breached": False, "count": 0, "error": None}
     if check_breach:
         breach_info = check_hibp_breach(password)
 
-    # 6. Final Strength Classification
     if breach_info["breached"] or "Found in local common passwords list" in patterns:
         category = "Weak"
         score_percent = 10
@@ -90,12 +84,10 @@ def analyze_password(password: str, check_breach: bool = False) -> dict:
         category = "Very Strong"
         score_percent = 100
 
-    # 7. Smart Suggestions
     suggestions = generate_suggestions(
         checks, patterns, zx_result.get("feedback", {}), breach_info["breached"]
     )
 
-    # Notice: Raw password is NEVER included in the returned dictionary
     return {
         "length": len(password),
         "category": category,
